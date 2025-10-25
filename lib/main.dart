@@ -1,7 +1,5 @@
-import 'package:blobs/blobs.dart';
 import 'package:easy_book/features/splash/presentation/screen/splash_Screen.dart';
 import 'package:flutter/material.dart';
-import 'dart:math';
 
 void main() {
   runApp(const MyApp());
