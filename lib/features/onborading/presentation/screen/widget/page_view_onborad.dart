@@ -1,4 +1,4 @@
-import 'package:easy_book/features/onborading/data/onborad_model.dart';
+import 'package:easy_book/features/onborading/data/model/onborad_model.dart';
 import 'package:flutter/material.dart';
 
 class PageViewOnborad extends StatelessWidget {

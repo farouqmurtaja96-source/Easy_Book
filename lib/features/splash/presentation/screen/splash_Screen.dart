@@ -1,11 +1,12 @@
+import 'package:easy_book/features/onborading/data/repository/onboarding_repo.dart';
 import 'package:easy_book/features/splash/presentation/screen/widget/custom_image_splash.dart';
 import 'package:easy_book/utils/app_routers.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 class SplashScreen extends StatefulWidget {
-  const SplashScreen({super.key});
-
+  const SplashScreen({super.key, required this.repo});
+  final OnboardingRepo repo;
   @override
   State<SplashScreen> createState() => _SplashScreenState();
 }
@@ -36,16 +37,24 @@ class _SplashScreenState extends State<SplashScreen>
     );
 
     Future.delayed(const Duration(milliseconds: 200), () {
+      if (!mounted) return;
       setState(() {
         startAnimation = true;
       });
+
       Future.delayed(const Duration(milliseconds: 600), () {
+        if (!mounted) return;
         logoController.forward();
       });
     });
-
+    bool done = widget.repo.isDone();
     Future.delayed(const Duration(milliseconds: 2000), () {
-      GoRouter.of(context).push(AppRouters.kOnborad);
+      if (!mounted) return;
+      if (done) {
+        context.go(AppRouters.kHome);
+      } else {
+        GoRouter.of(context).push(AppRouters.kOnborad);
+      }
     });
   }
 

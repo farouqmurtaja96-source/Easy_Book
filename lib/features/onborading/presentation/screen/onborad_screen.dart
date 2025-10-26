@@ -1,10 +1,13 @@
-import 'package:easy_book/features/onborading/data/onborad_model.dart';
+import 'package:easy_book/features/onborading/data/repository/onboarding_repo.dart';
 import 'package:easy_book/features/onborading/presentation/screen/widget/dot_indicator.dart';
 import 'package:easy_book/features/onborading/presentation/screen/widget/page_view_onborad.dart';
+import 'package:easy_book/utils/app_routers.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class OnboradScreen extends StatefulWidget {
-  const OnboradScreen({super.key});
+  const OnboradScreen({super.key, required this.repo});
+  final OnboardingRepo repo;
 
   @override
   State<OnboradScreen> createState() => _OnboradScreenState();
@@ -29,7 +32,10 @@ class _OnboradScreenState extends State<OnboradScreen> {
                         Icon(Icons.arrow_back, color: Colors.grey),
                         Spacer(),
                         GestureDetector(
-                          onTap: () {},
+                          onTap: () async {
+                            await widget.repo.setDone();
+                            GoRouter.of(context).push(AppRouters.kHome);
+                          },
                           child: Text(
                             'Skip',
                             style: TextStyle(fontSize: 16, color: Colors.black),
@@ -51,7 +57,7 @@ class _OnboradScreenState extends State<OnboradScreen> {
               ),
             ),
             SizedBox(height: currentIndex == 2 ? 20 : 0),
-            DotsIndicator(currentIndex: currentIndex),
+            DotsIndicator(currentIndex: currentIndex, repo: widget.repo),
             SizedBox(height: currentIndex == 2 ? 40 : 60),
           ],
         ),
