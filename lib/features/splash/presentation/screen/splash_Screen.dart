@@ -1,5 +1,7 @@
 import 'package:easy_book/features/splash/presentation/screen/widget/custom_image_splash.dart';
+import 'package:easy_book/utils/app_routers.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -40,6 +42,10 @@ class _SplashScreenState extends State<SplashScreen>
       Future.delayed(const Duration(milliseconds: 600), () {
         logoController.forward();
       });
+    });
+
+    Future.delayed(const Duration(milliseconds: 2000), () {
+      GoRouter.of(context).push(AppRouters.kOnborad);
     });
   }
 
