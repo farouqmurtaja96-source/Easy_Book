@@ -49,6 +49,9 @@ class _SplashScreenState extends State<SplashScreen>
     });
     bool done = widget.repo.isDone();
     Future.delayed(const Duration(milliseconds: 2000), () {
+      // Check if the widget is still mounted before updating the UI.
+      // This prevents calling setState or animations after dispose(),
+      // which can cause "AnimationController used after dispose" errors.
       if (!mounted) return;
       if (done) {
         context.go(AppRouters.kHome);
