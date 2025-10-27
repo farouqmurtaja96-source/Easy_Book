@@ -1,3 +1,5 @@
+import 'package:easy_book/features/home/presentation/screen/widget/body_home_screen.dart';
+import 'package:easy_book/features/home/presentation/screen/widget/custom_app_bar.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -5,6 +7,6 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(appBar: CustomAppBar(), body: BodyHomeScreen());
   }
 }

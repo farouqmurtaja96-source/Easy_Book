@@ -1,6 +1,7 @@
 import 'package:easy_book/features/onborading/data/repository/onboarding_repo.dart';
 import 'package:easy_book/features/splash/presentation/screen/widget/custom_image_splash.dart';
 import 'package:easy_book/utils/app_routers.dart';
+import 'package:easy_book/utils/color_constans.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -70,7 +71,7 @@ class _SplashScreenState extends State<SplashScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xff171B36),
+      backgroundColor: AppColor.primaryColor,
       body: Stack(
         children: [
           CustomImageSplash(

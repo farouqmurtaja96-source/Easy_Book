@@ -2,6 +2,7 @@ import 'package:easy_book/features/onborading/data/datasource/onboarding_local_d
 import 'package:easy_book/features/onborading/data/repository/onboarding_repo.dart';
 import 'package:easy_book/utils/app_routers.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:hive_flutter/adapters.dart';
 
 void main() async {
@@ -11,12 +12,15 @@ void main() async {
   final repo = OnboardingRepo(
     localDataSource: OnBoardingLocalDataSource(box: box),
   );
-  runApp(EasyBook(repo: repo));
+
+  final router = AppRouters.router(repo);
+  runApp(EasyBook(repo: repo, router: router));
 }
 
 class EasyBook extends StatelessWidget {
-  const EasyBook({super.key, required this.repo});
+  const EasyBook({super.key, required this.repo, required this.router});
   final OnboardingRepo repo;
+  final GoRouter router;
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
@@ -24,7 +28,7 @@ class EasyBook extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      routerConfig: AppRouters.router(repo),
+      routerConfig: router,
     );
   }
 }
