@@ -11,7 +11,7 @@ class TrendingListView extends StatelessWidget {
       child: Row(
         children: List.generate(7, (index) {
           return Padding(
-            padding: const EdgeInsets.only(right: 8.0),
+            padding: const EdgeInsets.only(right: 16.0),
             child: SizedBox(
               width: 160,
               child: Column(
@@ -25,7 +25,7 @@ class TrendingListView extends StatelessWidget {
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                   ),
-                  const SizedBox(height: 8),
+                  const SizedBox(height: 3),
                   Text(
                     'Melville, Herman',
                     style: TextStyle(

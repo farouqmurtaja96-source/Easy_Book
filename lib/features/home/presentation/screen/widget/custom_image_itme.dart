@@ -18,7 +18,7 @@ class _CustomImageItmeState extends State<CustomImageItme> {
           borderRadius: BorderRadius.circular(16),
           child: CachedNetworkImage(
             height: 190,
-            width: 160,
+            width: 170,
             fit: BoxFit.fill,
             imageUrl:
                 'https://www.gutenberg.org/cache/epub/2701/pg2701.cover.medium.jpg',

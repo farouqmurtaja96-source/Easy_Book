@@ -1,4 +1,4 @@
-import 'package:easy_book/features/home/presentation/screen/home_screen.dart';
+import 'package:easy_book/features/main/presentation/screen/main_screen.dart';
 import 'package:easy_book/features/onborading/data/repository/onboarding_repo.dart';
 import 'package:easy_book/features/onborading/presentation/screen/onborad_screen.dart';
 import 'package:easy_book/features/splash/presentation/screen/splash_screen.dart';
@@ -18,7 +18,7 @@ abstract class AppRouters {
           path: kOnborad,
           builder: (context, state) => OnboradScreen(repo: repo),
         ),
-        GoRoute(path: kHome, builder: (context, state) => const HomeScreen()),
+        GoRoute(path: kHome, builder: (context, state) => const MainScreen()),
       ],
     );
   }
