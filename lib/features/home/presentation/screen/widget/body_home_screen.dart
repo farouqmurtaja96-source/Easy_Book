@@ -1,5 +1,6 @@
 import 'package:easy_book/features/home/presentation/screen/widget/category_list_view.dart';
 import 'package:easy_book/features/home/presentation/screen/widget/custom_text_feild.dart';
+import 'package:easy_book/features/home/presentation/screen/widget/trending_list.dart';
 import 'package:flutter/material.dart';
 
 class BodyHomeScreen extends StatelessWidget {
@@ -7,13 +8,18 @@ class BodyHomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        const SizedBox(height: 16),
-        CustomTextFeild(),
-        const SizedBox(height: 15),
-        CategoryListView(),
-      ],
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20.0),
+      child: Column(
+        children: [
+          const SizedBox(height: 16),
+          const CustomTextFeild(),
+          const SizedBox(height: 15),
+          const CategoryListView(),
+          const SizedBox(height: 25),
+          const TrendingList(),
+        ],
+      ),
     );
   }
 }
