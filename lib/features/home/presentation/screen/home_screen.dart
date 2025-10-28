@@ -1,5 +1,7 @@
-import 'package:easy_book/features/home/presentation/screen/widget/body_home_screen.dart';
-import 'package:easy_book/features/home/presentation/screen/widget/custom_app_bar.dart';
+import 'package:easy_book/features/home/presentation/screen/widget/category_list_view.dart';
+import 'package:easy_book/features/home/presentation/screen/widget/custom_text_feild.dart';
+import 'package:easy_book/features/home/presentation/screen/widget/newset_list.dart';
+import 'package:easy_book/features/home/presentation/screen/widget/trending_list.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -7,6 +9,21 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: BodyHomeScreen());
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20.0),
+      child: CustomScrollView(
+        slivers: [
+          SliverToBoxAdapter(child: const SizedBox(height: 16)),
+          SliverToBoxAdapter(child: const CustomTextFeild()),
+          SliverToBoxAdapter(child: const SizedBox(height: 15)),
+          SliverToBoxAdapter(child: const CategoryListView()),
+          SliverToBoxAdapter(child: const SizedBox(height: 15)),
+          SliverToBoxAdapter(child: TrendingList()),
+          SliverToBoxAdapter(child: const SizedBox(height: 15)),
+          SliverToBoxAdapter(child: NewsetList()),
+        ],
+      ),
+    );
+    ;
   }
 }
