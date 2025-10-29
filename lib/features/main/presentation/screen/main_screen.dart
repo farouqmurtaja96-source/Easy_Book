@@ -1,6 +1,7 @@
 import 'package:easy_book/features/home/presentation/screen/home_screen.dart';
 import 'package:easy_book/features/home/presentation/screen/widget/custom_app_bar.dart';
 import 'package:easy_book/features/home/presentation/screen/widget/custom_bottom_nav_bar.dart';
+import 'package:easy_book/features/library/presentation/screen/library_screen.dart';
 import 'package:flutter/material.dart';
 
 class MainScreen extends StatefulWidget {
@@ -15,7 +16,7 @@ class _MainScreenState extends State<MainScreen> {
   final List<Widget> _pages = [
     const HomeScreen(),
     // Placeholder screens for other tabs
-    const Center(child: Text('Search Screen')),
+    const LibraryScreen(),
     const Center(child: Text('Favorites Screen')),
     const Center(child: Text('Profile Screen')),
   ];
