@@ -1,7 +1,7 @@
 import 'dart:math';
 
 import 'package:easy_book/features/library/presentation/screen/widget/book_progress_card.dart';
-import 'package:easy_book/features/onborading/presentation/screen/widget/dot_indicator.dart';
+
 import 'package:flutter/material.dart';
 
 class BookCarousel extends StatefulWidget {
@@ -74,15 +74,15 @@ class RecentlyRead extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20.0),
+      padding: const EdgeInsets.symmetric(horizontal: 25.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Recently',
+            'Recent',
             style: TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
+              fontSize: 22,
+              fontWeight: FontWeight.w500,
               color: Colors.white,
             ),
           ),
@@ -92,7 +92,7 @@ class RecentlyRead extends StatelessWidget {
             children: List.generate(
               3,
               (index) => AnimatedContainer(
-                duration: Duration(milliseconds: 200),
+                duration: Duration(milliseconds: 300),
                 margin: const EdgeInsets.symmetric(horizontal: 3),
                 height: 8,
                 width: currentPage == index ? 24 : 8,

@@ -1,4 +1,3 @@
-import 'package:easy_book/utils/color_constans.dart';
 import 'package:flutter/material.dart';
 
 class TopLibraryBody extends StatelessWidget {
@@ -10,7 +9,6 @@ class TopLibraryBody extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 30.0),
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             CircleAvatar(
