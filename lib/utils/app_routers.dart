@@ -1,3 +1,4 @@
+import 'package:easy_book/features/details/presentation/screen/details_screen.dart';
 import 'package:easy_book/features/main/presentation/screen/main_screen.dart';
 import 'package:easy_book/features/onborading/data/repository/onboarding_repo.dart';
 import 'package:easy_book/features/onborading/presentation/screen/onborad_screen.dart';
@@ -7,6 +8,7 @@ import 'package:go_router/go_router.dart';
 abstract class AppRouters {
   static const kOnborad = '/onboard';
   static const kHome = '/home';
+  static const kdetails = '/details';
   static GoRouter router(OnboardingRepo repo) {
     return GoRouter(
       routes: [
@@ -19,6 +21,10 @@ abstract class AppRouters {
           builder: (context, state) => OnboradScreen(repo: repo),
         ),
         GoRoute(path: kHome, builder: (context, state) => const MainScreen()),
+        GoRoute(
+          path: kdetails,
+          builder: (context, state) => const DetailsScreen(),
+        ),
       ],
     );
   }
