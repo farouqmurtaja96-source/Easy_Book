@@ -1,7 +1,7 @@
 import 'package:easy_book/features/details/presentation/screen/widget/custom_body_details_screen.dart';
 import 'package:easy_book/features/details/presentation/screen/widget/custom_bottom_sheet.dart';
 import 'package:easy_book/features/details/presentation/screen/widget/top_app_bar_details_screen.dart';
-import 'package:easy_book/utils/color_constans.dart';
+import 'package:easy_book/core/utils/color_constans.dart';
 import 'package:flutter/material.dart';
 
 class DetailsScreen extends StatelessWidget {

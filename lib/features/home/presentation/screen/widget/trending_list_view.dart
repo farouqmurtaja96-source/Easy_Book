@@ -1,5 +1,5 @@
 import 'package:easy_book/features/home/presentation/screen/widget/custom_image_itme.dart';
-import 'package:easy_book/utils/app_routers.dart';
+import 'package:easy_book/core/utils/app_routers.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 

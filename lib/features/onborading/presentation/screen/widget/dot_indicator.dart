@@ -1,6 +1,6 @@
 import 'package:easy_book/features/onborading/data/model/onborad_model.dart';
 import 'package:easy_book/features/onborading/data/repository/onboarding_repo.dart';
-import 'package:easy_book/utils/app_routers.dart';
+import 'package:easy_book/core/utils/app_routers.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
