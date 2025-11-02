@@ -1,4 +1,6 @@
+import 'package:easy_book/utils/app_routers.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class CustomBottomSheet extends StatelessWidget {
   const CustomBottomSheet({super.key});
@@ -33,7 +35,7 @@ class CustomBottomSheet extends StatelessWidget {
                   fontWeight: FontWeight.w400,
                   color: Colors.grey[500],
                 ),
-                maxLines: 15,
+                maxLines: 12,
                 overflow: TextOverflow.ellipsis,
               ),
               SizedBox(height: MediaQuery.of(context).size.height * 0.02),
@@ -56,7 +58,9 @@ class CustomBottomSheet extends StatelessWidget {
                   SizedBox(width: MediaQuery.of(context).size.width * 0.03),
                   Expanded(
                     child: ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        GoRouter.of(context).push(AppRouters.kreader);
+                      },
                       child: Center(
                         child: Padding(
                           padding: const EdgeInsets.all(20.0),
