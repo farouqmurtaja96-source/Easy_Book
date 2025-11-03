@@ -21,7 +21,9 @@ class TrendingListView extends StatelessWidget {
               children: List.generate(state.books.length, (index) {
                 final books = state.books[index];
                 return GestureDetector(
-                  onTap: () => GoRouter.of(context).push(AppRouters.kdetails),
+                  onTap: () => GoRouter.of(
+                    context,
+                  ).push(AppRouters.kdetails, extra: books),
                   child: Padding(
                     padding: const EdgeInsets.only(right: 16.0),
                     child: SizedBox(

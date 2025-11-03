@@ -1,8 +1,10 @@
+import 'package:easy_book/core/model/book_model/book_model.dart';
 import 'package:easy_book/features/details/presentation/screen/details_screen.dart';
 import 'package:easy_book/features/main/presentation/screen/main_screen.dart';
 import 'package:easy_book/features/onborading/data/repository/onboarding_repo.dart';
 import 'package:easy_book/features/onborading/presentation/screen/onborad_screen.dart';
-import 'package:easy_book/features/reader_page/presentation/screen/reader_screen.dart';
+
+import 'package:easy_book/features/reader_page/presentation/screen/reader_screen_refactored.dart';
 import 'package:easy_book/features/splash/presentation/screen/splash_screen.dart';
 import 'package:go_router/go_router.dart';
 
@@ -25,11 +27,13 @@ abstract class AppRouters {
         GoRoute(path: kHome, builder: (context, state) => const MainScreen()),
         GoRoute(
           path: kdetails,
-          builder: (context, state) => const DetailsScreen(),
+          builder: (context, state) =>
+              DetailsScreen(bookModel: state.extra as BookModel),
         ),
         GoRoute(
           path: kreader,
-          builder: (context, state) => const ReaderScreen(),
+          builder: (context, state) =>
+              ReaderScreenNew(bookModel: state.extra as BookModel),
         ),
       ],
     );
