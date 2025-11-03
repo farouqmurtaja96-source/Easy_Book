@@ -40,12 +40,12 @@ class BookModel extends Equatable {
     authors: (json['authors'] as List<dynamic>?)
         ?.map((e) => Author.fromJson(e as Map<String, dynamic>))
         .toList(),
-    summaries: json['summaries'] as List<String>?,
-    editors: json['editors'] as List<dynamic>?,
-    translators: json['translators'] as List<dynamic>?,
-    subjects: json['subjects'] as List<String>?,
-    bookshelves: json['bookshelves'] as List<String>?,
-    languages: json['languages'] as List<String>?,
+    summaries: (json['summaries'] as List<dynamic>?)?.cast<String>(),
+    editors: (json['editors'] as List<dynamic>?)?.cast<String>(),
+    translators: (json['translators'] as List<dynamic>?)?.cast<String>(),
+    subjects: (json['subjects'] as List<dynamic>?)?.cast<String>(),
+    bookshelves: (json['bookshelves'] as List<dynamic>?)?.cast<String>(),
+    languages: (json['languages'] as List<dynamic>?)?.cast<String>(),
     copyright: json['copyright'] as bool?,
     mediaType: json['media_type'] as String?,
     formats: json['formats'] == null

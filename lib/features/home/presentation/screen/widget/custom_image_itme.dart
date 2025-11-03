@@ -1,9 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:easy_book/core/model/book_model/book_model.dart';
 import 'package:flutter/material.dart';
 
 class CustomImageItme extends StatefulWidget {
-  const CustomImageItme({super.key});
-
+  const CustomImageItme({this.book, super.key});
+  final BookModel? book;
   @override
   State<CustomImageItme> createState() => _CustomImageItmeState();
 }
@@ -18,9 +19,10 @@ class _CustomImageItmeState extends State<CustomImageItme> {
           borderRadius: BorderRadius.circular(16),
           child: CachedNetworkImage(
             height: 190,
-            width: 170,
+            width: 145,
             fit: BoxFit.fill,
             imageUrl:
+                widget.book?.formats?.imageJpeg ??
                 'https://www.gutenberg.org/cache/epub/2701/pg2701.cover.medium.jpg',
           ),
         ),
