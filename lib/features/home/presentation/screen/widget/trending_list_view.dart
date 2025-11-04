@@ -1,4 +1,4 @@
-import 'package:easy_book/features/home/presentation/screen/viewmodel/cubit/get_books_popular_cubit.dart';
+import 'package:easy_book/features/home/presentation/screen/viewmodel/get_books_popular_cubit/get_books_popular_cubit.dart';
 import 'package:easy_book/features/home/presentation/screen/widget/custom_image_itme.dart';
 import 'package:easy_book/core/utils/app_routers.dart';
 import 'package:flutter/material.dart';

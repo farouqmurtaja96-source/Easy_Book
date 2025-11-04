@@ -1,3 +1,4 @@
+import 'package:easy_book/core/model/book_model/editors.dart';
 import 'package:equatable/equatable.dart';
 
 import 'author.dart';
@@ -8,7 +9,7 @@ class BookModel extends Equatable {
   final String? title;
   final List<Author>? authors;
   final List<String>? summaries;
-  final List<dynamic>? editors;
+  final List<Editors>? editors;
   final List<dynamic>? translators;
   final List<String>? subjects;
   final List<String>? bookshelves;
@@ -41,7 +42,9 @@ class BookModel extends Equatable {
         ?.map((e) => Author.fromJson(e as Map<String, dynamic>))
         .toList(),
     summaries: (json['summaries'] as List<dynamic>?)?.cast<String>(),
-    editors: (json['editors'] as List<dynamic>?)?.cast<String>(),
+    editors: (json['editors'] as List<dynamic>?)
+        ?.map((e) => Editors.fromJson(e as Map<String, dynamic>))
+        .toList(),
     translators: (json['translators'] as List<dynamic>?)?.cast<String>(),
     subjects: (json['subjects'] as List<dynamic>?)?.cast<String>(),
     bookshelves: (json['bookshelves'] as List<dynamic>?)?.cast<String>(),

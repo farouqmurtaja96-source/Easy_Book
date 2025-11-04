@@ -21,4 +21,18 @@ class RepoHomeImpl implements RepoHome {
       return Left(ServerFailure(e.toString()));
     }
   }
+
+  @override
+  Future<Either<Failures, List<BookModel>>> getBooksNewest() async {
+    try {
+      var data = await apiServices.getBooks(sort: '&sort=ascending');
+      List<BookModel> books = [];
+      for (var itme in data['results']) {
+        books.add(BookModel.fromJson(itme));
+      }
+      return Right(books);
+    } catch (e) {
+      return Left(ServerFailure(e.toString()));
+    }
+  }
 }

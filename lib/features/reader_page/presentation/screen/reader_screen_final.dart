@@ -2,20 +2,19 @@ import 'package:easy_book/core/model/book_model/book_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:easy_book/features/reader_page/presentation/viewmodel/cubit/reader_cubit.dart';
-import 'package:easy_book/features/reader_page/data/repo/reader_repo.dart';
 import 'package:easy_book/features/reader_page/data/repo/reader_repo_impl.dart';
 import 'package:http/http.dart' as http;
 
 /// شاشة القارئ مع تحسينات الأداء والتنظيم
 
-class ReaderScreenNew1 extends StatefulWidget {
-  const ReaderScreenNew1({super.key, required this.bookModel});
+class ReaderScreenRefactored extends StatefulWidget {
+  const ReaderScreenRefactored({super.key, required this.bookModel});
   final BookModel bookModel;
   @override
-  State<ReaderScreenNew1> createState() => _ReaderScreenNew1State();
+  State<ReaderScreenRefactored> createState() => _ReaderScreenRefactoredState();
 }
 
-class _ReaderScreenNew1State extends State<ReaderScreenNew1> {
+class _ReaderScreenRefactoredState extends State<ReaderScreenRefactored> {
   // ثوابت التخصيص
   static const double _minFontSize = 12.0;
   static const double _maxFontSize = 24.0;
@@ -43,13 +42,13 @@ class _ReaderScreenNew1State extends State<ReaderScreenNew1> {
     final screenSize = MediaQuery.of(context).size;
 
     // حساب مساحة النص الفعلية (مع مراعاة الهوامش)
-    const textAreaWidthRatio = 0.85; // 85% من عرض الشاشة
-    const textAreaHeightRatio = 0.75; // 75% من ارتفاع الشاشة
+    const double textAreaWidthRatio = 0.85; // 85% من عرض الشاشة
+    const double textAreaHeightRatio = 0.75; // 75% من ارتفاع الشاشة
     final textWidth = screenSize.width * textAreaWidthRatio;
     final textHeight = screenSize.height * textAreaHeightRatio;
 
     // متوسط عرض الحرف بناءً على حجم الخط
-    const avgCharWidthRatio = 0.6;
+    const double avgCharWidthRatio = 0.6;
     final avgCharWidth = fontSize * avgCharWidthRatio;
     final charsPerLine = (textWidth / avgCharWidth).floor();
 
@@ -298,10 +297,10 @@ class _ReaderScreenNew1State extends State<ReaderScreenNew1> {
           // رقم الصفحة في الأعلى
           Center(
             child: Text(
-              'Page \${index + 1} of \${pages.length}',
+              'Page ${index + 1} of ${pages.length}',
               style: TextStyle(
                 fontSize: fontSize * 0.7,
-                color: textColor.withValues(alpha: .6),
+                color: textColor.withOpacity(0.6),
               ),
             ),
           ),
@@ -329,10 +328,10 @@ class _ReaderScreenNew1State extends State<ReaderScreenNew1> {
           // رقم الصفحة في الأسفل
           Center(
             child: Text(
-              '\${index + 1}',
+              '${index + 1}',
               style: TextStyle(
                 fontSize: fontSize * 0.8,
-                color: textColor.withValues(alpha: .6),
+                color: textColor.withOpacity(0.6),
               ),
             ),
           ),
@@ -352,11 +351,11 @@ class _ReaderScreenNew1State extends State<ReaderScreenNew1> {
         padding: const EdgeInsets.all(16.0),
         margin: const EdgeInsets.symmetric(horizontal: 20.0),
         decoration: BoxDecoration(
-          color: Colors.white.withValues(alpha: .9),
+          color: Colors.white.withOpacity(0.9),
           borderRadius: BorderRadius.circular(15.0),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withValues(alpha: .1),
+              color: Colors.black.withOpacity(0.1),
               blurRadius: 10,
               offset: const Offset(0, 5),
             ),
@@ -369,10 +368,10 @@ class _ReaderScreenNew1State extends State<ReaderScreenNew1> {
             Row(
               children: [
                 Text(
-                  '\${currentPage + 1}/\${pages.length}',
+                  '${currentPage + 1}/${pages.length}',
                   style: TextStyle(
                     fontSize: 14,
-                    color: textColor.withValues(alpha: .7),
+                    color: textColor.withOpacity(0.7),
                   ),
                 ),
                 const SizedBox(width: 10),
@@ -381,7 +380,7 @@ class _ReaderScreenNew1State extends State<ReaderScreenNew1> {
                     value: pages.length > 0
                         ? (currentPage + 1) / pages.length
                         : 0,
-                    backgroundColor: textColor.withValues(alpha: .2),
+                    backgroundColor: textColor.withOpacity(0.2),
                     valueColor: AlwaysStoppedAnimation<Color>(textColor),
                   ),
                 ),

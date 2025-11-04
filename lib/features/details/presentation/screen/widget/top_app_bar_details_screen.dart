@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class TopAppBarDetailsScreen extends StatelessWidget {
   const TopAppBarDetailsScreen({super.key});
@@ -11,15 +12,24 @@ class TopAppBarDetailsScreen extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
 
         children: [
-          Container(
-            height: 55,
-            width: 55,
-            decoration: BoxDecoration(
-              color: Color(0xff647a85),
-              borderRadius: BorderRadius.circular(14),
-            ),
-            child: Center(
-              child: Icon(Icons.arrow_back_ios, size: 20, color: Colors.white),
+          GestureDetector(
+            onTap: () {
+              GoRouter.of(context).pop();
+            },
+            child: Container(
+              height: 55,
+              width: 55,
+              decoration: BoxDecoration(
+                color: Color(0xff647a85),
+                borderRadius: BorderRadius.circular(14),
+              ),
+              child: Center(
+                child: Icon(
+                  Icons.arrow_back_ios,
+                  size: 20,
+                  color: Colors.white,
+                ),
+              ),
             ),
           ),
           Text(

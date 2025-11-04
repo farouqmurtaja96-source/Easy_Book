@@ -3,8 +3,7 @@ import 'package:easy_book/features/details/presentation/screen/details_screen.da
 import 'package:easy_book/features/main/presentation/screen/main_screen.dart';
 import 'package:easy_book/features/onborading/data/repository/onboarding_repo.dart';
 import 'package:easy_book/features/onborading/presentation/screen/onborad_screen.dart';
-
-import 'package:easy_book/features/reader_page/presentation/screen/reader_screen_refactored.dart';
+import 'package:easy_book/features/reader_page/presentation/screen/reader_screen_final.dart';
 import 'package:easy_book/features/splash/presentation/screen/splash_screen.dart';
 import 'package:go_router/go_router.dart';
 
@@ -33,7 +32,7 @@ abstract class AppRouters {
         GoRoute(
           path: kreader,
           builder: (context, state) =>
-              ReaderScreenNew(bookModel: state.extra as BookModel),
+              ReaderScreenRefactored(bookModel: state.extra as BookModel),
         ),
       ],
     );
