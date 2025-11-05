@@ -1,4 +1,5 @@
 import 'package:easy_book/core/model/book_model/editors.dart';
+import 'package:easy_book/features/favorites/data/model/favorite_model.dart';
 import 'package:equatable/equatable.dart';
 
 import 'author.dart';
@@ -18,6 +19,7 @@ class BookModel extends Equatable {
   final String? mediaType;
   final Formats? formats;
   final int? downloadCount;
+  final List<FavoriteModel>? favorites;
 
   const BookModel({
     this.id,
@@ -33,6 +35,7 @@ class BookModel extends Equatable {
     this.mediaType,
     this.formats,
     this.downloadCount,
+    this.favorites,
   });
 
   factory BookModel.fromJson(Map<String, dynamic> json) => BookModel(
@@ -55,6 +58,9 @@ class BookModel extends Equatable {
         ? null
         : Formats.fromJson(json['formats'] as Map<String, dynamic>),
     downloadCount: json['download_count'] as int?,
+    favorites: (json['favorites'] as List<dynamic>?)
+        ?.map((e) => FavoriteModel.fromJson(e as Map<dynamic, dynamic>))
+        .toList(),
   );
 
   Map<String, dynamic> toJson() => {

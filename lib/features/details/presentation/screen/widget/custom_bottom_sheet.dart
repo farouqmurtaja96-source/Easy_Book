@@ -30,7 +30,9 @@ class CustomBottomSheet extends StatelessWidget {
               ),
               SizedBox(height: MediaQuery.of(context).size.height * 0.02),
               Text(
-                bookModel.summaries!.first,
+                bookModel.summaries != null && bookModel.summaries!.isNotEmpty
+                    ? bookModel.summaries!.first
+                    : 'No summary available for this book.',
                 style: TextStyle(
                   fontSize: 14,
                   fontWeight: FontWeight.w400,

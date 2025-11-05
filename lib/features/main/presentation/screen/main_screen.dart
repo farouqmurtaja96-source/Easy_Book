@@ -1,3 +1,4 @@
+import 'package:easy_book/features/favorites/presentation/screen/favorites_screen.dart';
 import 'package:easy_book/features/home/presentation/screen/home_screen.dart';
 import 'package:easy_book/features/home/presentation/screen/widget/custom_app_bar.dart';
 import 'package:easy_book/features/home/presentation/screen/widget/custom_bottom_nav_bar.dart';
@@ -17,7 +18,7 @@ class _MainScreenState extends State<MainScreen> {
     const HomeScreen(),
     // Placeholder screens for other tabs
     const LibraryScreen(),
-    const Center(child: Text('Favorites Screen')),
+    const FavoritesScreen(),
     const Center(child: Text('Profile Screen')),
   ];
   void _onItemTapped(int index) {

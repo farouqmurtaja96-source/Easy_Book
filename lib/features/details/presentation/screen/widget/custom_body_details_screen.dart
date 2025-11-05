@@ -28,7 +28,9 @@ class CustomBodyDetailsScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 10),
                 Text(
-                  books.authors?[0].name ?? '',
+                  (books.authors != null && books.authors!.isNotEmpty)
+                      ? books.authors![0].name ?? ''
+                      : 'Unknown author',
                   style: TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.w300,
