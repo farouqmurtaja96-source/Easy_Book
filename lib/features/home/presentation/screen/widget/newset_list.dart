@@ -1,4 +1,3 @@
-import 'package:easy_book/core/model/book_model/book_model.dart';
 import 'package:easy_book/features/home/presentation/screen/widget/newset_grid_view.dart';
 import 'package:flutter/material.dart';
 

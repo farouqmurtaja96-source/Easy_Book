@@ -1,5 +1,8 @@
 import 'package:easy_book/core/utils/color_constans.dart';
+import 'package:easy_book/features/home/presentation/screen/viewmodel/get_books_newest_cubit/get_books_newest_cubit.dart';
+import 'package:easy_book/features/home/presentation/screen/viewmodel/get_books_popular_cubit/get_books_popular_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CategoryListView extends StatefulWidget {
   const CategoryListView({super.key});
@@ -44,6 +47,13 @@ class _CategoryListViewState extends State<CategoryListView> {
               onTap: () {
                 setState(() {
                   currentIndex = index;
+                  String fa = categoryList[currentIndex];
+                  BlocProvider.of<GetBooksPopularCubit>(
+                    context,
+                  ).getBooksPopular(topic: fa);
+                  BlocProvider.of<GetBooksNewestCubit>(
+                    context,
+                  ).getBooksNewest(topic: fa);
                 });
               },
               child: Container(

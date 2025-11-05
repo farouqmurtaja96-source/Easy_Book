@@ -4,6 +4,7 @@ import 'package:easy_book/features/favorites/data/model/favorite_model.dart';
 import 'package:easy_book/features/favorites/presentation/screen/viewmodel/cubit/favorites_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shimmer/shimmer.dart';
 
 class CustomImageItme extends StatefulWidget {
   const CustomImageItme({this.book, super.key});
@@ -127,6 +128,22 @@ class _CustomImageItmeState extends State<CustomImageItme> {
             imageUrl:
                 widget.book?.formats?.imageJpeg ??
                 'https://www.gutenberg.org/cache/epub/2701/pg2701.cover.medium.jpg',
+
+            placeholder: (context, url) => Shimmer.fromColors(
+              baseColor: Colors.grey[300]!,
+              highlightColor: Colors.grey[100]!,
+              child: Container(
+                width: double.infinity,
+                height: 150, // حجم الصندوق المؤقت
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(
+                    12,
+                  ), // لو عندك زوايا مدورة
+                ),
+              ),
+            ),
+            errorWidget: (context, url, error) => const Icon(Icons.error),
           ),
         ),
         Positioned(

@@ -4,6 +4,7 @@ import 'package:easy_book/core/utils/app_routers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:shimmer/shimmer.dart';
 
 class TrendingListView extends StatelessWidget {
   const TrendingListView({super.key});
@@ -44,7 +45,12 @@ class TrendingListView extends StatelessWidget {
                           ),
                           const SizedBox(height: 3),
                           Text(
-                            '${books.authors![0].name}',
+                            (books.authors != null && books.authors!.isNotEmpty)
+                                ? books.authors![0].name!
+                                : (books.editors != null &&
+                                      books.editors!.isNotEmpty)
+                                ? books.editors![0].name!
+                                : "مجهول",
                             style: TextStyle(
                               fontSize: 14,
                               fontWeight: FontWeight.w400,
@@ -62,7 +68,35 @@ class TrendingListView extends StatelessWidget {
             ),
           );
         } else {
-          return const Center(child: CircularProgressIndicator());
+          return SizedBox(
+            height: 190,
+
+            child: SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                children: List.generate(
+                  3,
+                  (index) => Padding(
+                    padding: const EdgeInsets.only(right: 18.0),
+                    child: Shimmer.fromColors(
+                      baseColor: Colors.grey[300]!,
+                      highlightColor: Colors.grey[100]!,
+                      child: Container(
+                        width: 145,
+                        height: 190, // حجم الصندوق المؤقت
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(
+                            12,
+                          ), // لو عندك زوايا مدورة
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          );
         }
       },
     );

@@ -5,8 +5,8 @@ class ApiServices {
 
   Dio dio = Dio();
 
-  Future getBooks({required String sort}) async {
-    Response response = await dio.get('$baseUrl$sort');
+  Future getBooks({required String sort, String? topic = 'history'}) async {
+    Response response = await dio.get('$baseUrl$sort$topic');
     return response.data;
   }
 }

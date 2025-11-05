@@ -8,9 +8,9 @@ part 'get_books_newest_state.dart';
 class GetBooksNewestCubit extends Cubit<GetBooksNewestState> {
   GetBooksNewestCubit(this.repoHome) : super(GetBooksNewestInitial());
   final RepoHome repoHome;
-  Future<void> getBooksNewest() async {
+  Future<void> getBooksNewest({String? topic}) async {
     emit(GetBooksNewestLoading());
-    var result = await repoHome.getBooksNewest();
+    var result = await repoHome.getBooksNewest(topic: topic);
     result.fold(
       (faliuer) {
         emit(GetBooksNewestFaluier(message: faliuer.message));

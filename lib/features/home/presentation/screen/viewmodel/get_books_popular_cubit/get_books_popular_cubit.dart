@@ -8,13 +8,12 @@ part 'get_books_popular_state.dart';
 class GetBooksPopularCubit extends Cubit<GetBooksPopularState> {
   GetBooksPopularCubit(this.repoHome) : super(GetBooksPopularInitial());
   final RepoHome repoHome;
-  Future<void> getBooksPopular() async {
+  Future<void> getBooksPopular({String? topic}) async {
     emit(GetBooksPopularLoading());
-    var result = await repoHome.getBooksPopular();
+    var result = await repoHome.getBooksPopular(topic: topic);
 
     result.fold(
       (faluier) {
-        print(faluier.message);
         emit(GetBooksPopularFaliuer(faluier.message));
       },
       (books) {

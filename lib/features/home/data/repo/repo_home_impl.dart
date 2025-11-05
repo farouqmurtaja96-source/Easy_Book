@@ -9,9 +9,14 @@ class RepoHomeImpl implements RepoHome {
 
   RepoHomeImpl({required this.apiServices});
   @override
-  Future<Either<Failures, List<BookModel>>> getBooksPopular() async {
+  Future<Either<Failures, List<BookModel>>> getBooksPopular({
+    String? topic = 'all',
+  }) async {
     try {
-      var data = await apiServices.getBooks(sort: '&sort=popular');
+      var data = await apiServices.getBooks(
+        sort: '&sort=popular',
+        topic: '&topic=$topic',
+      );
       List<BookModel> books = [];
       for (var item in data['results']) {
         books.add(BookModel.fromJson(item));
@@ -23,9 +28,14 @@ class RepoHomeImpl implements RepoHome {
   }
 
   @override
-  Future<Either<Failures, List<BookModel>>> getBooksNewest() async {
+  Future<Either<Failures, List<BookModel>>> getBooksNewest({
+    String? topic = 'all',
+  }) async {
     try {
-      var data = await apiServices.getBooks(sort: '&sort=ascending');
+      var data = await apiServices.getBooks(
+        sort: '&sort=ascending',
+        topic: '&topic=$topic',
+      );
       List<BookModel> books = [];
       for (var itme in data['results']) {
         books.add(BookModel.fromJson(itme));

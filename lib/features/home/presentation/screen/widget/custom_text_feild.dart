@@ -9,14 +9,14 @@ class CustomTextFeild extends StatelessWidget {
       decoration: InputDecoration(
         prefixIcon: Icon(Icons.search, color: Colors.grey),
         hintText: 'Search',
-        border: OutlineInput(),
-        enabledBorder: OutlineInput(),
-        focusedBorder: OutlineInput(),
+        border: outlineInput(),
+        enabledBorder: outlineInput(),
+        focusedBorder: outlineInput(),
       ),
     );
   }
 
-  OutlineInputBorder OutlineInput() {
+  OutlineInputBorder outlineInput() {
     return OutlineInputBorder(
       borderRadius: BorderRadius.circular(15),
       borderSide: BorderSide(color: Colors.grey),

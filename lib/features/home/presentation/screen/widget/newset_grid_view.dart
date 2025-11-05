@@ -4,6 +4,7 @@ import 'package:easy_book/features/home/presentation/screen/widget/custom_image_
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:shimmer/shimmer.dart';
 
 class NewsetGridView extends StatelessWidget {
   const NewsetGridView({super.key});
@@ -67,7 +68,38 @@ class NewsetGridView extends StatelessWidget {
             },
           );
         } else {
-          return const Center(child: CircularProgressIndicator());
+          return SizedBox(
+            height: 600,
+            child: GridView.builder(
+              shrinkWrap: true,
+              physics: NeverScrollableScrollPhysics(),
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                mainAxisSpacing: 10,
+                crossAxisSpacing: 20,
+                childAspectRatio: 0.69,
+              ),
+              itemBuilder: (context, index) {
+                return Padding(
+                  padding: const EdgeInsets.only(right: 18.0),
+                  child: Shimmer.fromColors(
+                    baseColor: Colors.grey[300]!,
+                    highlightColor: Colors.grey[100]!,
+                    child: Container(
+                      width: 140,
+                      height: 160, // حجم الصندوق المؤقت
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(
+                          12,
+                        ), // لو عندك زوايا مدورة
+                      ),
+                    ),
+                  ),
+                );
+              },
+            ),
+          );
         }
       },
     );
