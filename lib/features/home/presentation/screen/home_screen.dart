@@ -1,8 +1,12 @@
+import 'package:easy_book/core/utils/app_routers.dart';
 import 'package:easy_book/features/home/presentation/screen/widget/category_list_view.dart';
 import 'package:easy_book/features/home/presentation/screen/widget/custom_text_feild.dart';
 import 'package:easy_book/features/home/presentation/screen/widget/newset_list.dart';
 import 'package:easy_book/features/home/presentation/screen/widget/trending_list.dart';
+import 'package:easy_book/features/search/presentation/screen/viewmodel/cubit/search_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -14,7 +18,15 @@ class HomeScreen extends StatelessWidget {
       child: CustomScrollView(
         slivers: [
           SliverToBoxAdapter(child: const SizedBox(height: 16)),
-          SliverToBoxAdapter(child: const CustomTextFeild()),
+          SliverToBoxAdapter(
+            child: CustomTextFeild(
+              onSubmitted: (value) {
+                print(value);
+                final String query = value;
+                GoRouter.of(context).push(AppRouters.ksearch, extra: query);
+              },
+            ),
+          ),
           SliverToBoxAdapter(child: const SizedBox(height: 15)),
           SliverToBoxAdapter(child: const CategoryListView()),
           SliverToBoxAdapter(child: const SizedBox(height: 15)),

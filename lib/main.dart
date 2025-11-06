@@ -7,6 +7,8 @@ import 'package:easy_book/features/home/presentation/screen/viewmodel/get_books_
 import 'package:easy_book/features/onborading/data/datasource/onboarding_local_ds.dart';
 import 'package:easy_book/features/onborading/data/repository/onboarding_repo.dart';
 import 'package:easy_book/core/utils/app_routers.dart';
+import 'package:easy_book/features/search/data/search_repo_impl.dart';
+import 'package:easy_book/features/search/presentation/screen/viewmodel/cubit/search_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -49,6 +51,9 @@ class EasyBook extends StatelessWidget {
         BlocProvider(
           create: (context) =>
               FavoritesCubit(getit.get<FavoriteRepo>())..getFavorites(),
+        ),
+        BlocProvider(
+          create: (context) => SearchCubit(getit.get<SearchRepoImpl>()),
         ),
       ],
       child: MaterialApp.router(
