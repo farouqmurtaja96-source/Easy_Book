@@ -1,4 +1,7 @@
 import 'package:easy_book/core/utils/service_locater.dart';
+import 'package:easy_book/core/model/book_model/author.dart';
+import 'package:easy_book/core/model/book_model/editors.dart';
+import 'package:easy_book/core/model/book_model/formats.dart';
 import 'package:easy_book/features/favorites/data/repo/favorite_repo.dart';
 import 'package:easy_book/features/favorites/presentation/screen/viewmodel/cubit/favorites_cubit.dart';
 import 'package:easy_book/features/home/data/repo/repo_home_impl.dart';
@@ -17,8 +20,15 @@ import 'package:hive_flutter/adapters.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();
+
+  // Register Hive adapters
+  Hive.registerAdapter(AuthorAdapter());
+  Hive.registerAdapter(EditorsAdapter());
+  Hive.registerAdapter(FormatsAdapter());
+
   final appBox = await Hive.openBox("appBox");
   final favoritesBox = await Hive.openBox("favoritesBox");
+  final homeCachedBox = await Hive.openBox('homeCachedBox');
   final repo = OnboardingRepo(
     localDataSource: OnBoardingLocalDataSource(box: appBox),
   );

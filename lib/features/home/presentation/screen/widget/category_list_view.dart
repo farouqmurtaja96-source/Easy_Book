@@ -51,6 +51,7 @@ class _CategoryListViewState extends State<CategoryListView> {
                   BlocProvider.of<GetBooksPopularCubit>(
                     context,
                   ).getBooksPopular(topic: fa);
+                  print(fa);
                   BlocProvider.of<GetBooksNewestCubit>(
                     context,
                   ).getBooksNewest(topic: fa);

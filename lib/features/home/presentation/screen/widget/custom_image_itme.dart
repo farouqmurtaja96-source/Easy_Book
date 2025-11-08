@@ -125,9 +125,7 @@ class _CustomImageItmeState extends State<CustomImageItme> {
             height: 190,
             width: 145,
             fit: BoxFit.fill,
-            imageUrl:
-                widget.book?.formats?.imageJpeg ??
-                'https://www.gutenberg.org/cache/epub/2701/pg2701.cover.medium.jpg',
+            imageUrl: widget.book?.formats?.imageJpeg ?? '',
 
             placeholder: (context, url) => Shimmer.fromColors(
               baseColor: Colors.grey[300]!,

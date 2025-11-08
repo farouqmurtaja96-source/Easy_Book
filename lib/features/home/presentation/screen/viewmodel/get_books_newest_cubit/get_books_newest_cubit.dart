@@ -9,10 +9,18 @@ class GetBooksNewestCubit extends Cubit<GetBooksNewestState> {
   GetBooksNewestCubit(this.repoHome) : super(GetBooksNewestInitial());
   final RepoHome repoHome;
   Future<void> getBooksNewest({String? topic}) async {
+    // عرض حالة التحميل فقط إذا لم تكن هناك بيانات في الكاش
     emit(GetBooksNewestLoading());
-    var result = await repoHome.getBooksNewest(topic: topic);
+    final cachedData = await repoHome.getCachedNewestBooks(topic: topic);
+    if (cachedData.isNotEmpty) {
+      emit(GetBooksNewestSuccess(books: cachedData));
+    }
+
+    final result = await repoHome.getBooksNewest(topic: topic);
     result.fold(
       (faliuer) {
+        // إذا فشل جلب البيانات وكانت هناك بيانات في الكاش، لا نعرض خطأ
+
         emit(GetBooksNewestFaluier(message: faliuer.message));
       },
       (books) {

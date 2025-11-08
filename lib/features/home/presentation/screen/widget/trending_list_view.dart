@@ -46,10 +46,10 @@ class TrendingListView extends StatelessWidget {
                           const SizedBox(height: 3),
                           Text(
                             (books.authors != null && books.authors!.isNotEmpty)
-                                ? books.authors![0].name!
+                                ? books.authors![0].name ?? ''
                                 : (books.editors != null &&
                                       books.editors!.isNotEmpty)
-                                ? books.editors![0].name!
+                                ? books.editors![0].name ?? ''
                                 : "مجهول",
                             style: TextStyle(
                               fontSize: 14,

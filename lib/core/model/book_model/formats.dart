@@ -1,12 +1,31 @@
+import 'package:hive/hive.dart';
 import 'package:equatable/equatable.dart';
+import 'package:json_annotation/json_annotation.dart';
 
+part 'formats.g.dart';
+
+@HiveType(typeId: 3)
+@JsonSerializable()
 class Formats extends Equatable {
+  @HiveField(0)
   final String? textHtml;
+
+  @HiveField(1)
   final String? applicationEpubZip;
+
+  @HiveField(2)
   final String? applicationXMobipocketEbook;
+
+  @HiveField(3)
   final String? textPlainCharsetUsAscii;
+
+  @HiveField(4)
   final String? applicationRdfXml;
+
+  @HiveField(5)
   final String? imageJpeg;
+
+  @HiveField(6)
   final String? applicationOctetStream;
 
   const Formats({
@@ -19,37 +38,18 @@ class Formats extends Equatable {
     this.applicationOctetStream,
   });
 
-  factory Formats.fromJson(Map<String, dynamic> json) => Formats(
-    textHtml: json['text/html'] as String?,
-    applicationEpubZip: json['application/epub+zip'] as String?,
-    applicationXMobipocketEbook:
-        json['application/x-mobipocket-ebook'] as String?,
-    textPlainCharsetUsAscii: json['text/plain; charset=us-ascii'] as String?,
-    applicationRdfXml: json['application/rdf+xml'] as String?,
-    imageJpeg: json['image/jpeg'] as String?,
-    applicationOctetStream: json['application/octet-stream'] as String?,
-  );
+  factory Formats.fromJson(Map<String, dynamic> json) => _$FormatsFromJson(json);
 
-  Map<String, dynamic> toJson() => {
-    'text/html': textHtml,
-    'application/epub+zip': applicationEpubZip,
-    'application/x-mobipocket-ebook': applicationXMobipocketEbook,
-    'text/plain; charset=us-ascii': textPlainCharsetUsAscii,
-    'application/rdf+xml': applicationRdfXml,
-    'image/jpeg': imageJpeg,
-    'application/octet-stream': applicationOctetStream,
-  };
+  Map<String, dynamic> toJson() => _$FormatsToJson(this);
 
   @override
-  List<Object?> get props {
-    return [
-      textHtml,
-      applicationEpubZip,
-      applicationXMobipocketEbook,
-      textPlainCharsetUsAscii,
-      applicationRdfXml,
-      imageJpeg,
-      applicationOctetStream,
-    ];
-  }
+  List<Object?> get props => [
+    textHtml,
+    applicationEpubZip,
+    applicationXMobipocketEbook,
+    textPlainCharsetUsAscii,
+    applicationRdfXml,
+    imageJpeg,
+    applicationOctetStream,
+  ];
 }

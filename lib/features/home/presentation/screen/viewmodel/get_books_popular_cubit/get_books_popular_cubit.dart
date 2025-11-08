@@ -8,13 +8,23 @@ part 'get_books_popular_state.dart';
 class GetBooksPopularCubit extends Cubit<GetBooksPopularState> {
   GetBooksPopularCubit(this.repoHome) : super(GetBooksPopularInitial());
   final RepoHome repoHome;
+
   Future<void> getBooksPopular({String? topic}) async {
+    // دايمًا نرجع الحالة Loading أول
     emit(GetBooksPopularLoading());
-    var result = await repoHome.getBooksPopular(topic: topic);
+
+    // جلب الكاش أولاً (عشان يعرض بسرعة)
+    final cachedData = await repoHome.getCachedPopularBooks(topic: topic);
+    if (cachedData.isNotEmpty) {
+      emit(GetBooksPopularSuccess(books: cachedData));
+    }
+
+    // جلب من النت لتحديث البيانات
+    final result = await repoHome.getBooksPopular(topic: topic);
 
     result.fold(
-      (faluier) {
-        emit(GetBooksPopularFaliuer(faluier.message));
+      (failure) {
+        emit(GetBooksPopularFaliuer(failure.message));
       },
       (books) {
         emit(GetBooksPopularSuccess(books: books));

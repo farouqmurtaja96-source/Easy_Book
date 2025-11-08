@@ -1,24 +1,30 @@
+import 'package:hive/hive.dart';
 import 'package:equatable/equatable.dart';
+import 'package:json_annotation/json_annotation.dart';
 
+part 'author.g.dart';
+
+@HiveType(typeId: 1) // unique typeId
+@JsonSerializable()
 class Author extends Equatable {
+  @HiveField(0)
   final String? name;
+
+  @HiveField(1)
   final int? birthYear;
+
+  @HiveField(2)
   final int? deathYear;
 
-  const Author({this.name, this.birthYear, this.deathYear});
+  @HiveField(3)
+  final String? imageUrl;
 
-  factory Author.fromJson(Map<String, dynamic> json) => Author(
-    name: json['name'] as String?,
-    birthYear: json['birth_year'] as int?,
-    deathYear: json['death_year'] as int?,
-  );
+  const Author({this.name, this.birthYear, this.deathYear, this.imageUrl});
 
-  Map<String, dynamic> toJson() => {
-    'name': name,
-    'birth_year': birthYear,
-    'death_year': deathYear,
-  };
+  factory Author.fromJson(Map<String, dynamic> json) => _$AuthorFromJson(json);
+
+  Map<String, dynamic> toJson() => _$AuthorToJson(this);
 
   @override
-  List<Object?> get props => [name, birthYear, deathYear];
+  List<Object?> get props => [name, birthYear, deathYear, imageUrl];
 }

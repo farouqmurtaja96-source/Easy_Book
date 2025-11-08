@@ -7,4 +7,6 @@ abstract class RepoHome {
   Future<Either<Failures, List<BookModel>>> getBooksNewest({
     String? topic = 'all',
   });
+  Future<List<BookModel>> getCachedNewestBooks({String? topic});
+  Future<List<BookModel>> getCachedPopularBooks({String? topic});
 }

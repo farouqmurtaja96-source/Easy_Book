@@ -49,9 +49,9 @@ class NewsetGridView extends StatelessWidget {
                     const SizedBox(height: 3),
                     Text(
                       (books.authors != null && books.authors!.isNotEmpty)
-                          ? books.authors![0].name!
+                          ? books.authors![0].name ?? "مجهول"
                           : (books.editors != null && books.editors!.isNotEmpty)
-                          ? books.editors![0].name!
+                          ? books.editors![0].name ?? "مجهول"
                           : "مجهول", // قيمة افتراضية في حالة عدم وجود مؤلفين أو محررين
 
                       style: TextStyle(

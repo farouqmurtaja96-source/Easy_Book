@@ -40,21 +40,77 @@ class BookModel extends Equatable {
     id: json['id'] as int?,
     title: json['title'] as String?,
     authors: (json['authors'] as List<dynamic>?)
-        ?.map((e) => Author.fromJson(e as Map<String, dynamic>))
+        ?.map((e) {
+          // تحويل Map<dynamic, dynamic> إلى Map<String, dynamic>
+          final Map<String, dynamic> authorMap = {};
+          if (e is Map) {
+            e.forEach((key, value) {
+              authorMap[key.toString()] = value;
+            });
+          }
+          return Author.fromJson(authorMap);
+        })
         .toList(),
-    summaries: (json['summaries'] as List<dynamic>?)?.cast<String>(),
+    summaries: (json['summaries'] as List<dynamic>?)
+        ?.map((e) => e.toString())
+        .toList(),
     editors: (json['editors'] as List<dynamic>?)
-        ?.map((e) => Editors.fromJson(e as Map<String, dynamic>))
+        ?.map((e) {
+          // تحويل Map<dynamic, dynamic> إلى Map<String, dynamic>
+          final Map<String, dynamic> editorMap = {};
+          if (e is Map) {
+            e.forEach((key, value) {
+              editorMap[key.toString()] = value;
+            });
+          }
+          return Editors.fromJson(editorMap);
+        })
         .toList(),
-    translators: (json['translators'] as List<dynamic>?)?.cast<String>(),
-    subjects: (json['subjects'] as List<dynamic>?)?.cast<String>(),
-    bookshelves: (json['bookshelves'] as List<dynamic>?)?.cast<String>(),
-    languages: (json['languages'] as List<dynamic>?)?.cast<String>(),
+    translators: (json['translators'] as List<dynamic>?)
+        ?.map((e) => e.toString())
+        .toList(),
+    subjects: (json['subjects'] as List<dynamic>?)
+        ?.map((e) => e.toString())
+        .toList(),
+    bookshelves: (json['bookshelves'] as List<dynamic>?)
+        ?.map((e) => e.toString())
+        .toList(),
+    languages: (json['languages'] as List<dynamic>?)
+        ?.map((e) => e.toString())
+        .toList(),
     copyright: json['copyright'] as bool?,
     mediaType: json['media_type'] as String?,
     formats: json['formats'] == null
         ? null
-        : Formats.fromJson(json['formats'] as Map<String, dynamic>),
+        : (() {
+            // تحويل Map<dynamic, dynamic> إلى Map<String, dynamic>
+            final Map<String, dynamic> formatsMap = {};
+            if (json['formats'] is Map) {
+              (json['formats'] as Map).forEach((key, value) {
+                // تحويل أسماء الحقول من شكل API إلى شكل النموذج
+                final String keyStr = key.toString();
+                if (keyStr == 'text/html') {
+                  formatsMap['textHtml'] = value;
+                } else if (keyStr == 'application/epub+zip') {
+                  formatsMap['applicationEpubZip'] = value;
+                } else if (keyStr == 'application/x-mobipocket-ebook') {
+                  formatsMap['applicationXMobipocketEbook'] = value;
+                } else if (keyStr == 'text/plain; charset=us-ascii') {
+                  formatsMap['textPlainCharsetUsAscii'] = value;
+                } else if (keyStr == 'application/rdf+xml') {
+                  formatsMap['applicationRdfXml'] = value;
+                } else if (keyStr == 'image/jpeg') {
+                  formatsMap['imageJpeg'] = value;
+                } else if (keyStr == 'application/octet-stream') {
+                  formatsMap['applicationOctetStream'] = value;
+                } else {
+                  // الاحتفاظ بالمفتاح الأصلي إذا لم يكن من الحقول المعروفة
+                  formatsMap[keyStr] = value;
+                }
+              });
+            }
+            return Formats.fromJson(formatsMap);
+          })(),
     downloadCount: json['download_count'] as int?,
   );
 
