@@ -1,16 +1,36 @@
-# easy_book
+📚 EasyBook — Flutter Reading App
 
-A new Flutter project.
+EasyBook is a modern Flutter-based application that allows users to explore, read, and manage books from the Gutendex API.
+It focuses on speed, elegant UI, and an enhanced reading experience for users who love books.
 
-## Getting Started
+🚀 Features
 
-This project is a starting point for a Flutter application.
+🔍 Advanced Search: Find books instantly by title, author, or topic.
 
-A few resources to get you started if this is your first Flutter project:
+❤️ Favorites: Save and manage your favorite books.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+💾 Offline Caching: Powered by Hive for quick access and persistent data.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+📖 Reading Progress Tracking: Keep track of how much you’ve read in each book.
+
+📊 Reading Statistics: See your total reading hours and books completed.
+
+📚 Library Page: View, manage, and continue your reading journey.
+
+💡 Smooth Onboarding & Splash: Great first-time user experience.
+
+🧠 Clean Architecture: MVVM pattern with Cubit for scalable state management.
+
+🧰 Tech Stack
+
+Flutter
+
+Hive (local storage)
+
+Cubit / Bloc
+
+GoRouter
+
+Gutendex API
+
+💬 “Read, Track, and Grow Your Library.”
