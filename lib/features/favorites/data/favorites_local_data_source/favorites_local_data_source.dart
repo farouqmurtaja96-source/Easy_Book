@@ -1,3 +1,4 @@
+import 'package:dartz/dartz_unsafe.dart';
 import 'package:easy_book/features/favorites/data/model/favorite_model.dart';
 import 'package:hive/hive.dart';
 
@@ -6,12 +7,17 @@ class FavoritesLocalDataSource {
   static const String key = 'favorites';
   FavoritesLocalDataSource({required this.box});
   Future<List<FavoriteModel>> getFavorites() async {
-    final result = await box.get(key);
-    if (result == null) return [];
-    final list = (result as List)
-        .map((e) => FavoriteModel.fromJson(e))
-        .toList();
-    return list;
+    final result = await box.get(key) ?? [];
+
+    return (result as List)
+        .map((e)  {
+        final  Map<String , dynamic> convert = {};
+        (e as Map).forEach((key, value){
+          convert[key.toString()] = value;
+        });
+        return FavoriteModel.fromJson(convert);
+    }).toList();
+
   }
 
   Future<void> addFavorite(FavoriteModel favoritemodel) async {

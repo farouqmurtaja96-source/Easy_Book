@@ -1,12 +1,15 @@
 import 'dart:math';
 
+import 'package:easy_book/features/library/data/model/library_model.dart';
 import 'package:easy_book/features/library/presentation/screen/widget/book_progress_card.dart';
+import 'package:easy_book/features/library/presentation/view_model/cubit/library_cubit.dart';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class BookCarousel extends StatefulWidget {
-  const BookCarousel({super.key});
-
+  const BookCarousel({super.key, required this.books});
+  final List<LibraryModel> books;
   @override
   State<BookCarousel> createState() => _BookCarouselState();
 }
@@ -22,20 +25,23 @@ class _BookCarouselState extends State<BookCarousel> {
         currentPage = controller.page ?? 0;
       });
     });
+    context.read<LibraryCubit>().getBooks();
   }
 
   @override
   Widget build(BuildContext context) {
+    //
     return Column(
       children: [
-        RecentlyRead(currentPage: currentPage),
+        RecentlyRead(currentPage: currentPage, books: widget.books),
         Center(
           child: SizedBox(
-            height: 150,
+            height: 160,
             child: PageView.builder(
               controller: controller,
-              itemCount: 3,
+              itemCount: widget.books.length,
               itemBuilder: (context, index) {
+                final book = widget.books[index];
                 final double offset = (currentPage - index);
                 // نحسب الدوران الزاوي
                 final double angle = offset * pi / 6; // زاوية الدوران
@@ -55,7 +61,7 @@ class _BookCarouselState extends State<BookCarousel> {
                     opacity: opacity,
                     child: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                      child: BookProgressCard(),
+                      child: BookProgressCard(book: book),
                     ),
                   ),
                 );
@@ -69,8 +75,13 @@ class _BookCarouselState extends State<BookCarousel> {
 }
 
 class RecentlyRead extends StatelessWidget {
-  const RecentlyRead({super.key, required this.currentPage});
+  const RecentlyRead({
+    super.key,
+    required this.currentPage,
+    required this.books,
+  });
   final double currentPage;
+  final List<LibraryModel> books;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -90,7 +101,7 @@ class RecentlyRead extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: List.generate(
-              3,
+              books.length,
               (index) => AnimatedContainer(
                 duration: Duration(milliseconds: 300),
                 margin: const EdgeInsets.symmetric(horizontal: 3),

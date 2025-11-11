@@ -1,10 +1,13 @@
+import 'package:easy_book/features/library/data/model/library_model.dart';
 import 'package:flutter/material.dart';
 
 class TopLibraryBody extends StatelessWidget {
-  const TopLibraryBody({super.key});
-
+  const TopLibraryBody({super.key, required this.books});
+  final List<LibraryModel> books;
   @override
   Widget build(BuildContext context) {
+    final totalBooks = books.length;
+    final totalHours = books.fold<double>(0, (sum, b) => sum + b.readingHours);
     return SafeArea(
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 30.0),
@@ -23,7 +26,7 @@ class TopLibraryBody extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  '23',
+                  totalBooks.toString(),
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 24,
@@ -50,7 +53,7 @@ class TopLibraryBody extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
                     Text(
-                      '5',
+                      totalHours.round().toString(),
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 24,

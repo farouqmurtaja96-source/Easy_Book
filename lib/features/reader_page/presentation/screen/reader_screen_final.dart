@@ -1,4 +1,5 @@
 import 'package:easy_book/core/model/book_model/book_model.dart';
+import 'package:easy_book/features/library/presentation/view_model/cubit/library_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:easy_book/features/reader_page/presentation/viewmodel/cubit/reader_cubit.dart';
@@ -342,6 +343,19 @@ class _ReaderScreenRefactoredState extends State<ReaderScreenRefactored> {
 
   /// بناء واجهة المستخدم للتحكم في القراءة
   Widget _buildControls() {
+    final progress = (currentPage + 1) / pages.length;
+    // تحويل نسبة التقدم إلى نسبة مئوية (0-100)
+    final progressPercentage = progress * 100;
+
+    // حساب وقت القراءة بشكل أكثر منطقية
+    // نعتقد أن المستخدم يحتاج 30 ثانية لكل صفحة في المتوسط
+    final double readingMinutes = (currentPage + 1) * 0.5; // 0.5 دقيقة لكل صفحة
+    final double readingHours = readingMinutes / 60; // تحويل الدقائق إلى ساعات
+
+    context.read<LibraryCubit>()
+      ..updateProgress(widget.bookModel.id!, progress)
+      ..updateReadingHours(widget.bookModel.id!, readingHours);
+
     return AnimatedPositioned(
       duration: const Duration(milliseconds: 300),
       bottom: showControls ? 20 : -100,
@@ -368,7 +382,7 @@ class _ReaderScreenRefactoredState extends State<ReaderScreenRefactored> {
             Row(
               children: [
                 Text(
-                  '${currentPage + 1}/${pages.length}',
+                  '${progressPercentage.round().toString()} %',
                   style: TextStyle(
                     fontSize: 14,
                     color: textColor.withOpacity(0.7),
@@ -377,9 +391,7 @@ class _ReaderScreenRefactoredState extends State<ReaderScreenRefactored> {
                 const SizedBox(width: 10),
                 Expanded(
                   child: LinearProgressIndicator(
-                    value: pages.length > 0
-                        ? (currentPage + 1) / pages.length
-                        : 0,
+                    value: pages.isNotEmpty ? progress : 0,
                     backgroundColor: textColor.withOpacity(0.2),
                     valueColor: AlwaysStoppedAnimation<Color>(textColor),
                   ),

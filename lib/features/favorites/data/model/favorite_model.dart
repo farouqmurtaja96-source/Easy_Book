@@ -20,7 +20,7 @@ class FavoriteModel extends Equatable {
   @override
   List<Object> get props => [id, title, author, img];
 
-  factory FavoriteModel.fromJson(Map<dynamic, dynamic> json) {
+  factory FavoriteModel.fromJson(Map<String, dynamic> json) {
     return FavoriteModel(
       id: json['id'] ?? 0,
       title: json['title'] ?? '',
@@ -31,7 +31,7 @@ class FavoriteModel extends Equatable {
     );
   }
 
-  Map<dynamic, dynamic> toJson() {
+  Map<String, dynamic> toJson() {
     return {
       'id': id,
       'title': title,

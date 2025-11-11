@@ -7,6 +7,8 @@ import 'package:easy_book/features/favorites/presentation/screen/viewmodel/cubit
 import 'package:easy_book/features/home/data/repo/repo_home_impl.dart';
 import 'package:easy_book/features/home/presentation/screen/viewmodel/get_books_newest_cubit/get_books_newest_cubit.dart';
 import 'package:easy_book/features/home/presentation/screen/viewmodel/get_books_popular_cubit/get_books_popular_cubit.dart';
+import 'package:easy_book/features/library/data/repo/library_repo_implt.dart';
+import 'package:easy_book/features/library/presentation/view_model/cubit/library_cubit.dart';
 import 'package:easy_book/features/onborading/data/datasource/onboarding_local_ds.dart';
 import 'package:easy_book/features/onborading/data/repository/onboarding_repo.dart';
 import 'package:easy_book/core/utils/app_routers.dart';
@@ -29,6 +31,8 @@ void main() async {
   final appBox = await Hive.openBox("appBox");
   final favoritesBox = await Hive.openBox("favoritesBox");
   final homeCachedBox = await Hive.openBox('homeCachedBox');
+  final libraryBox = await Hive.openBox('libraryBox');
+
   final repo = OnboardingRepo(
     localDataSource: OnBoardingLocalDataSource(box: appBox),
   );
@@ -64,6 +68,10 @@ class EasyBook extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => SearchCubit(getit.get<SearchRepoImpl>()),
+        ),
+        BlocProvider(
+          create: (context) =>
+              LibraryCubit(getit.get<LibraryRepoImplt>())..getBooks(),
         ),
       ],
       child: MaterialApp.router(

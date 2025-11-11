@@ -1,6 +1,9 @@
 import 'package:easy_book/core/model/book_model/book_model.dart';
 import 'package:easy_book/core/utils/app_routers.dart';
+import 'package:easy_book/features/library/data/model/library_model.dart';
+import 'package:easy_book/features/library/presentation/view_model/cubit/library_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 class CustomBottomSheet extends StatelessWidget {
@@ -62,6 +65,15 @@ class CustomBottomSheet extends StatelessWidget {
                   Expanded(
                     child: ElevatedButton(
                       onPressed: () {
+                        final book = LibraryModel(
+                          id: bookModel.id!,
+                          name: bookModel.title!,
+                          image: bookModel.formats!.imageJpeg!,
+                          author: bookModel.authors![0].name!,
+                          progress: 0,
+                          readingHours: 0,
+                        );
+                        context.read<LibraryCubit>().addBook(book);
                         GoRouter.of(
                           context,
                         ).push(AppRouters.kreader, extra: bookModel);
